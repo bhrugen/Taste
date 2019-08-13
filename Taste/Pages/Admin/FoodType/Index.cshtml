@@ -1,0 +1,27 @@
+﻿@page
+@model Taste.Pages.Admin.FoodType.IndexModel
+
+
+<div class="border backgroundWhite container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Food Type List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="Upsert" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp; Create New</a>
+        </div>
+    </div>
+    <br /><br />
+    <table id="DT_load" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Food Type</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{ 
+    <script src="~/js/foodType.js"></script>
+}
