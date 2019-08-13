@@ -17,6 +17,7 @@ namespace Taste.Pages.Admin.Category
             _unitOfWork = unitOfWork;
         }
 
+        [BindProperty]
         public Models.Category CategoryObj { get; set; }
 
         public IActionResult OnGet(int? id)
@@ -32,6 +33,25 @@ namespace Taste.Pages.Admin.Category
             }
             return Page();
 
+        }
+
+
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            if(CategoryObj.Id == 0)
+            {
+                _unitOfWork.Category.Add(CategoryObj);
+            }
+            else
+            {
+                _unitOfWork.Category.Update(CategoryObj);
+            }
+            _unitOfWork.Save();
+            return RedirectToPage("./Index");
         }
     }
 }
