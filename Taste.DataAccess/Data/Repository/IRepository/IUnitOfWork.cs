@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Taste.DataAccess.Data.Repository.IRepository
 {
-    interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
+        ICategoryRepository Category { get; }
+        void Save();
     }
 }

@@ -6,7 +6,7 @@ using Taste.Models;
 
 namespace Taste.DataAccess.Data.Repository.IRepository
 {
-    interface ICategoryRepository : IRepository<Category>
+    public interface ICategoryRepository : IRepository<Category>
     {
         IEnumerable<SelectListItem> GetCategoryListForDropDown();
 
