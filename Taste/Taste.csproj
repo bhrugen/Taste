@@ -27,6 +27,7 @@
     <Folder Include="Pages\Admin\" />
     <Folder Include="Pages\Customer\Home\" />
     <Folder Include="Pages\Customer\Cart\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
