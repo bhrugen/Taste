@@ -13,6 +13,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.0-preview7.19365.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0-preview7.19362.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0-preview7.19362.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0-preview7.19362.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview7-19378-04" />
     <PackageReference Include="Stripe.net" Version="27.24.0" />
   </ItemGroup>
 
@@ -24,7 +26,9 @@
 
 
   <ItemGroup>
-    <Folder Include="Pages\Admin\" />
+    <Folder Include="Pages\Admin\MenuItem\" />
+    <Folder Include="Pages\Admin\User\" />
+    <Folder Include="Pages\Admin\FoodType\" />
     <Folder Include="Pages\Customer\Home\" />
     <Folder Include="Pages\Customer\Cart\" />
     <Folder Include="wwwroot\images\" />
