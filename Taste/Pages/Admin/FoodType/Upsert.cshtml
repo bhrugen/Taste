@@ -1,0 +1,50 @@
+﻿@page
+@model Taste.Pages.Admin.FoodType.UpsertModel
+
+
+<form method="post" asp-action="Upsert">
+    <div class="container">
+        <div class="row px-2 mx-2 backgroundWhite border">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (Model.FoodTypeObj.Id != 0)
+            {
+                <input type="hidden" asp-for="FoodTypeObj.Id" />
+            }
+
+            <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
+                <h2 class="text-primary">@(Model.FoodTypeObj.Id != 0 ? "Update" : "Create") Category</h2>
+            </div>
+
+            <div class="col-8 pt-3">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="FoodTypeObj.Name"></label>
+                    </div>
+                    <div class="col-9">
+                        <input class="form-control" asp-for="FoodTypeObj.Name" />
+                        <span class="text-danger" asp-validation-for="FoodTypeObj.Name"></span>
+                    </div>
+                </div>
+              
+                <div class="form-group row">
+                    <div class="col-9 offset-3">
+                        <div class="row">
+                            <div class="col-6">
+
+                                <button type="submit" class="btn btn-primary form-control">@(Model.FoodTypeObj.Id != 0 ? "Update" : "Create")</button>
+
+                            </div>
+                            <div class="col-6">
+                                <a asp-page="./Index" class="btn btn-success form-control">Back to List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</form>
+
