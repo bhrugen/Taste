@@ -26,8 +26,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-page="/Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Privacy</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropDown" data-toggle="dropdown">
+                                Admin
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item text-white" asp-page="/Admin/Category/Index">Category</a>
+                                <a class="dropdown-item text-white" asp-page="/Admin/FoodType/Index">Food Type</a>
+                                <a class="dropdown-item text-white" asp-page="/Admin/MenuItem/Index">Menu Item</a>
+                                <a class="dropdown-item text-white" asp-page="/Admin/User/Index">Users</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
