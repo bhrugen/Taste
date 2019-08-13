@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Taste.Data
+namespace Taste.DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext
     {

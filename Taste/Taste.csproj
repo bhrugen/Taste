@@ -16,4 +16,10 @@
     <PackageReference Include="Stripe.net" Version="27.24.0" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\Taste.DataAccess\Taste.DataAccess.csproj" />
+    <ProjectReference Include="..\Taste.Models\Taste.Models.csproj" />
+  </ItemGroup>
+
 </Project>
