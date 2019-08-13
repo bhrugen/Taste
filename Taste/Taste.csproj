@@ -28,7 +28,6 @@
   <ItemGroup>
     <Folder Include="Pages\Admin\MenuItem\" />
     <Folder Include="Pages\Admin\User\" />
-    <Folder Include="Pages\Admin\FoodType\" />
     <Folder Include="Pages\Customer\Home\" />
     <Folder Include="Pages\Customer\Cart\" />
     <Folder Include="wwwroot\images\" />
