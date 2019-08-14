@@ -27,7 +27,7 @@ function loadList() {
                                     <i class="far fa-trash-alt"></i> Delete
                                 </a>
                     </div>`;
-                }, "width": "30%"
+                }, "width": "30%" 
             }
         ],
         "language": {
