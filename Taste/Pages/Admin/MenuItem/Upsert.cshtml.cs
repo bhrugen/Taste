@@ -31,7 +31,8 @@ namespace Taste.Pages.Admin.MenuItem
             MenuItemObj = new MenuItemVM
             {
                 CategoryList = _unitOfWork.Category.GetCategoryListForDropDown(),
-                FoodTypeList = _unitOfWork.FoodType.GetFoodTypeListForDropDown()
+                FoodTypeList = _unitOfWork.FoodType.GetFoodTypeListForDropDown(),
+                MenuItem = new Models.MenuItem()
             };
             if (id != null)
             {
@@ -65,7 +66,7 @@ namespace Taste.Pages.Admin.MenuItem
                 {
                     files[0].CopyTo(fileStream);
                 }
-                MenuItemObj.MenuItem.Image = @"\image\menuItems\" + fileName + extension;
+                MenuItemObj.MenuItem.Image = @"\images\menuItems\" + fileName + extension;
 
                 _unitOfWork.MenuItem.Add(MenuItemObj.MenuItem);
             }
@@ -91,9 +92,7 @@ namespace Taste.Pages.Admin.MenuItem
                     {
                         files[0].CopyTo(fileStream);
                     }
-                    MenuItemObj.MenuItem.Image = @"\image\menuItems\" + fileName + extension;
-
-                    _unitOfWork.MenuItem.Add(MenuItemObj.MenuItem);
+                    MenuItemObj.MenuItem.Image = @"\images\menuItems\" + fileName + extension;
                 }
                 else
                 {
