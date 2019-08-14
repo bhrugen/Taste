@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -47,13 +48,26 @@ namespace Taste.Pages.Admin.MenuItem
 
         public IActionResult OnPost()
         {
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            if(CategoryObj.Id == 0)
+            if(MenuItemObj.MenuItem.Id == 0)
             {
-                _unitOfWork.Category.Add(CategoryObj);
+                string fileName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(webRootPath, @"images\menuItems");
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var fileStream = new FileStream(Path.Combine(uploads,fileName+extension), FileMode.Create))
+                {
+                    files[0].CopyTo(fileStream);
+                }
+                MenuItemObj.MenuItem.Image = @"\image\menuItems\" + fileName + extension;
+
+                _unitOfWork.MenuItem.Add(MenuItemObj.MenuItem);
             }
             else
             {
