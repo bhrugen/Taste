@@ -6,46 +6,93 @@
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @if (Model.CategoryObj.Id != 0)
+            @if (Model.MenuItemObj.MenuItem.Id != 0)
             {
-                <input type="hidden" asp-for="CategoryObj.Id" />
+                <input type="hidden" asp-for="MenuItemObj.MenuItem.Id" />
             }
 
             <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
-                <h2 class="text-primary">@(Model.CategoryObj.Id!=0 ? "Update" : "Create") Category</h2>
+                <h2 class="text-primary">@(Model.MenuItemObj.MenuItem.Id!=0 ? "Update" : "Create") Menu Item</h2>
             </div>
 
             <div class="col-8 pt-3">
                 <div class="form-group row">
                     <div class="col-3">
-                        <label asp-for="CategoryObj.Name"></label>
+                        <label asp-for="MenuItemObj.MenuItem.Name"></label>
                     </div>
                     <div class="col-9">
-                        <input class="form-control" asp-for="CategoryObj.Name" />
-                        <span class="text-danger" asp-validation-for="CategoryObj.Name"></span>
+                        <input class="form-control" asp-for="MenuItemObj.MenuItem.Name" />
+                        <span class="text-danger" asp-validation-for="MenuItemObj.MenuItem.Name"></span>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-3">
-                        <label asp-for="CategoryObj.DisplayOrder"></label>
+                        <label asp-for="MenuItemObj.MenuItem.Price"></label>
                     </div>
                     <div class="col-9">
-                        <input class="form-control" asp-for="CategoryObj.DisplayOrder" />
-                        <span class="text-danger" asp-validation-for="CategoryObj.DisplayOrder"></span>
+                        <input class="form-control" asp-for="MenuItemObj.MenuItem.Price" />
+                        <span class="text-danger" asp-validation-for="MenuItemObj.MenuItem.Price"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemObj.MenuItem.Description"></label>
+                    </div>
+                    <div class="col-9">
+                        <textarea class="form-control" asp-for="MenuItemObj.MenuItem.Description" id="txtDesc" style="height:200px;"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemObj.MenuItem.Image"></label>
+                    </div>
+                    <div class="col-9">
+                        <input type="file" class="form-control" name="files" id="uploadBox" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemObj.MenuItem.CategoryId"></label>
+                    </div>
+                    <div class="col-9">
+                        @Html.DropDownListFor(m => m.MenuItemObj.MenuItem.CategoryId,
+                                                Model.MenuItemObj.CategoryList,
+                                                "- Please select a Category -",
+                                                new { @class = "form-control" })
+                        <span class="text-danger" asp-validation-for="MenuItemObj.MenuItem.CategoryId"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemObj.MenuItem.FoodTypeId"></label>
+                    </div>
+                    <div class="col-9">
+                        @Html.DropDownListFor(m => m.MenuItemObj.MenuItem.FoodTypeId,
+                                                Model.MenuItemObj.FoodTypeList,
+                                                "- Please select a Food Type -",
+                                                new { @class = "form-control" })
+                        <span class="text-danger" asp-validation-for="MenuItemObj.MenuItem.FoodTypeId"></span>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-9 offset-3">
-                       <div class="row">
-                           <div class="col-6">
-                              
-                               <button type="submit" class="btn btn-primary form-control">@(Model.CategoryObj.Id != 0 ? "Update" : "Create")</button>
-                              
-                           </div>
-                           <div class="col-6">
-                               <a asp-page="./Index" class="btn btn-success form-control">Back to List</a>
-                           </div>
-                       </div>
+                        <div class="row">
+                            <div class="col-6">
+
+                                @if (Model.MenuItemObj.MenuItem.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" onclick="return ValidateInput()" class="btn btn-primary form-control">Create</button>
+                                }
+
+                            </div>
+                            <div class="col-6">
+                                <a asp-page="./Index" class="btn btn-success form-control">Back to List</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
