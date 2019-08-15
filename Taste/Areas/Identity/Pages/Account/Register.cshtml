@@ -1,5 +1,7 @@
 ﻿@page
 @model RegisterModel
+@using Taste.Utility
+
 @{
     ViewData["Title"] = "Register";
 }
@@ -45,6 +47,20 @@
                             <input type="password" asp-for="Input.ConfirmPassword" autocomplete="off" placeholder="ConfirmPassword" class="form-control" />
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
+                        <div class="py-2">
+                            <input type="radio" name="rdUserRole" value="@SD.KitchenRole" /> @SD.KitchenRole
+                            <input type="radio" name="rdUserRole" value="@SD.FrontDeskRole" /> @SD.FrontDeskRole
+                            <input type="radio" name="rdUserRole" value="@SD.ManagerRole" /> @SD.ManagerRole
+                            <input type="radio" name="rdUserRole" value="@SD.CustomerRole" /> @SD.CustomerRole
+
+                        </div>
+                        <div class="py-2">
+                            <button type="submit" class="btn btn-success form-control">Register</button>
+                        </div>
+                        <hr />
+                        <p>
+                            By clicking <em>Register</em> you agree to our <a href="" target="_blank"> terms of service </a>
+                        </p>
                     </div>
 
                 </div>
@@ -63,27 +79,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-           
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+ 
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
