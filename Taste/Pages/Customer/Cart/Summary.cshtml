@@ -4,5 +4,107 @@
     ViewData["Title"] = "Summary";
 }
 
-<h1>Summary</h1>
+<form method="post">
+    <br />
+
+    @if (Model.detailCart.listCart.Count > 0)
+    {
+        <input asp-for="@Model.detailCart.listCart[0].ApplicationUserId" hidden />
+    <div class="backgroundWhiteBorder">
+        <div class="container">
+            <div class="card">
+                <div class="card-header bg-dark text-light ml-0 row container">
+                    <div class="col-6">
+                        <i class="fa fa-shopping-cart"></i> &nbsp;
+                        Order Summary
+                    </div>
+                    <div class="col-6 text-right">
+                        <a asp-page="Index" class="btn btn-outline-info btn-sm">Back to Cart</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container rounded p-2">
+                        <div class="row">
+                            <div class="col-12 col-lg-6 pb-4">
+                                <div class="row">
+                                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="text-info">PickUp Details:</span>
+                                    </h4>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input id="txtName" asp-for="@Model.detailCart.OrderHeader.PickupName" type="text" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Phone Number</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input id="txtPhone" asp-for="@Model.detailCart.OrderHeader.PhoneNumber" type="text" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Pickup Date</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input id="datepicker" value="" asp-for="@Model.detailCart.OrderHeader.PickUpDate" type="text" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Pickup Time</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input id="timepicker" value="" asp-for="@Model.detailCart.OrderHeader.PickUpTime" type="text" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Additional Instructions: </label>
+                                    </div>
+                                    <div class="col-9">
+                                        <textarea asp-for="@Model.detailCart.OrderHeader.Comments" style="height:100px;" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-5 offset-lg-1">
+                                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-info">Order Summary:</span>
+                                </h4>
+                                <ul class="list-group mb-3">
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="my-0">$$$NAME$$$</h6>
+                                            <small class="text-muted">Quantity: $$$COUNT$$$</small>
+                                        </div>
+                                        <span class="text-muted">$$$ PRICE* COUNT $$$)</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between bg-light">
+                                        <small class="text-info">Total (USD)</small>
+                                        <strong class="text-info">$$$ORDER TOTAL$$$</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-12 col-md-4 offset-md-8">
+                            <button type="submit" value="Place Order" class="btn btn-success form-control">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</form>
+
 
