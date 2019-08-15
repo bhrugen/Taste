@@ -1,5 +1,8 @@
 ﻿@page
 @model Taste.Pages.Customer.Cart.SummaryModel
+@inject  IOptions<Taste.Utility.StripeSettings> Stripe
+@using Microsoft.Extensions.Options
+
 @{
     ViewData["Title"] = "Summary";
 }
@@ -102,6 +105,22 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12 col-md-4 offset-md-8">
+                            @{ 
+                                var OrderTotalForStripe = Model.detailCart.OrderHeader.OrderTotal * 100;
+                            }
+                            <script src="https://checkout.stripe.com/checkout.js"
+                                    class="stripe-button"
+                                    data-keyboard="@Stripe.Value.PublishableKey"
+                                    data-amount="@OrderTotalForStripe"
+                                    data-name="Taste Restaurant"
+                                    data-label="Place Order"
+                                    data-description="Good Food, Good Mood."
+                                    data-locale="auto"
+                                    data-allow-remember-me="false"
+                                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
+                            </script>
+
+                            <script>document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';</script>
                             <button type="submit" id="btnPlaceOrder" onclick="return validateInput()" value="Place Order" class="btn btn-success form-control">Place Order</button>
                         </div>
                     </div>
