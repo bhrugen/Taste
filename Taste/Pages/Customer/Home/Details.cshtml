@@ -4,5 +4,62 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
+<div class="">
+    <form method="post">
+        <div class="container backgroundWhite">
+            <div class="card">
+                <div class="card-header bg-light text-light ml-0 row container">
+                    <div class="col-12 col-md-6">
+                        <h1 class="text-primary">@Model.ShoppingCartObj.MenuItem.Name</h1>
+                    </div>
+                    <div class="col-12 col-md-6 text-md-right">
+                        <h1 class="text-muted"> @((Model.ShoppingCartObj.MenuItem.Price).ToString("c"))</h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container rounded p-2">
+                        <div class="row">
+                            <div class="col-12 col-lg-8">
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <span class="badge badge-warning h3">@Model.ShoppingCartObj.MenuItem.Category.Name</span>
+                                        <span class="badge badge-dark">@Model.ShoppingCartObj.MenuItem.FoodType.Name</span>
+                                        <h3 class="text-success"></h3>
+
+                                        <p class="text-secondary">@Html.Raw(Model.ShoppingCartObj.MenuItem.Description)</p>
+
+                                        <div class="row py-4">
+                                            <div class="col-2"><label asp-for="ShoppingCartObj.Count" class="h3"></label></div>
+                                            <div class="col-10"> 
+                                                <input type="text" asp-for="ShoppingCartObj.Count" class="form-control rounded"  height="40px;"/>
+                                                <span asp-validation-for="ShoppingCartObj.Count" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 p-1 text-center">
+                                <img src="@Model.ShoppingCartObj.MenuItem.Image" width="100%" class="rounded" />
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-12 col-md-6 pb-1 ">
+                            <a asp-page="Index" class="btn btn-success btn-square form-control btn-lg" style="height:50px;">Back to List</a>
+                        </div>
+                        <div class="col-12 col-md-6 ">
+                            <button type="submit" class="btn btn-primary btn-square form-control btn-lg" style="height:50px;">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
