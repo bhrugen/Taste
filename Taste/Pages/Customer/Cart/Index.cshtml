@@ -4,5 +4,89 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<form method="post">
+
+    <br />
+    @if (Model.OrderDetailsCartVM.listCart.Count > 0)
+    {
+    <div class="backgroundWhiteBorder">
+        <div class="container">
+            <div class="card">
+                <div class="card-header bg-dark text-light ml-0 row container">
+                    <div class="col-6">
+                        <i class="fa fa-shopping-cart"></i> &nbsp;
+                        Shopping Cart
+                    </div>
+                    <div class="col-6 text-right">
+                        <a asp-page="../Home/Index" class="btn btn-outline-info btn-sm">Continue Shopping</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @foreach (var item in Model.OrderDetailsCartVM.listCart)
+                    {
+                    <div class="row">
+                        <div class="d-none d-lg-block col-lg-2 text-center py-2">
+                            <img src="@item.MenuItem.Image" class="rounded" width="120" height="80" />
+                        </div>
+                        <div class="col-12 text-sm-center col-lg-5 text-lg-left">
+                            <h4><strong>@item.MenuItem.Name</strong></h4>
+                        </div>
+                        <div class="col-12 text-sm-center col-lg-5 text-lg-right row">
+                            <div class="col-4 text-md-right" style="padding-top:5px;">
+                                <h6><strong>$@item.MenuItem.Price <span class="text-muted">x</span> @item.Count </strong></h6>
+                            </div>
+                            <div class="col-6 col-sm-4 col-lg-6">
+                                <div class="float-right mx-1">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="float-right mx-1">
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-2 col-sm-4 col-lg-2 text-right">
+                                <button type="submit" class="btn btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    }
+
+                    <div class="row">
+                        <div class="col-12 col-md-5">
+
+                        </div>
+                        <div class="col-12 col-md-6 offset-md-1 col-lg-4 offset-lg-3 pr-4">
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between bg-light">
+                                    <span class="text-info"> Total (USD)</span>
+                                    <strong class="text-info">$ <span id="txtOrderTotal">@Model.OrderDetailsCartVM.OrderHeader.OrderTotal</span></strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="card-footer">
+                    <div class="col-12 col-lg-4 offset-lg-8 col-md-6 offset-md-6">
+                        <a asp-page="Summary" class="btn btn-success form-control">Summary</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    else
+    {
+        <div>
+            Please add items to shopping cart.
+        </div>
+    }
+</form>
 
