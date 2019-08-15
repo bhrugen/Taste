@@ -97,7 +97,7 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12 col-md-4 offset-md-8">
-                            <button type="submit" value="Place Order" class="btn btn-success form-control">Place Order</button>
+                            <button type="submit" id="btnPlaceOrder" onclick="return validateInput()" value="Place Order" class="btn btn-success form-control">Place Order</button>
                         </div>
                     </div>
                 </div>
@@ -107,4 +107,39 @@
     }
 </form>
 
+@section Scripts{ 
+<script>
+    $(function () {
+        $("#datepicker").datepicker({ minDate: 1, maxDate: "+1W" });
+        $("#timepicker").timepicker({ 'minTime': '11:00 AM', 'maxTime': '9:00 PM', step: '30' });
+    });
+
+
+    function validateInput() {
+        var time = document.getElementById("timepicker").value;
+        var dt = document.getElementById("datepicker").value;
+        var name = document.getElementById("txtName").value;
+        var phone = document.getElementById("txtPhone").value;
+
+        if (dt.toString() == '') {
+            swal("Error", "Please select pickup Date", "error");
+            return false;
+        }
+        if (time.toString() == '') {
+            swal("Error", "Please select pickup Time", "error");
+            return false;
+        }
+        if (name.toString() == '') {
+            swal("Error", "Please enter picup Name", "error");
+            return false;
+        }
+        if (phone.toString() == '') {
+            swal("Error", "Please enter Phone Number", "error");
+            return false;
+        }
+        return true;
+    }
+
+</script>
+}
 
