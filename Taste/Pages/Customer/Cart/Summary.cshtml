@@ -78,16 +78,21 @@
                                     <span class="text-info">Order Summary:</span>
                                 </h4>
                                 <ul class="list-group mb-3">
+                                    @{ var total = 0.0;}
+                                    @foreach (var details in Model.detailCart.listCart)
+                                    {
                                     <li class="list-group-item d-flex justify-content-between">
                                         <div>
-                                            <h6 class="my-0">$$$NAME$$$</h6>
-                                            <small class="text-muted">Quantity: $$$COUNT$$$</small>
+                                            <h6 class="my-0">@details.MenuItem.Name</h6>
+                                            <small class="text-muted">Quantity: @details.Count</small>
                                         </div>
-                                        <span class="text-muted">$$$ PRICE* COUNT $$$)</span>
+                                        <span class="text-muted">$@(details.MenuItem.Price * details.Count)</span>
+                                        @{ total += (details.MenuItem.Price * details.Count);}
                                     </li>
+                                    }
                                     <li class="list-group-item d-flex justify-content-between bg-light">
                                         <small class="text-info">Total (USD)</small>
-                                        <strong class="text-info">$$$ORDER TOTAL$$$</strong>
+                                        <strong class="text-info">$@total.ToString("0.00")</strong>
                                     </li>
                                 </ul>
                             </div>
