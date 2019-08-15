@@ -1,6 +1,10 @@
 ﻿@page
+@using Taste.Utility
 
-<div class="border backgroundWhite container">
+
+@if (User.IsInRole(SD.ManagerRole))
+{
+    <div class="border backgroundWhite container">
     <div class="row">
         <div class="col-6">
             <h2 class="text-primary">Menu Item List</h2>
@@ -22,7 +26,12 @@
         </thead>
     </table>
 </div>
-
+}
+else{
+    <div>
+        <h1 class="text-danger"> Access Denied</h1>
+    </div>
+}
 @section Scripts{
     <script src="~/js/menuItem.js"></script>
 }
