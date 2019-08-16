@@ -55,5 +55,14 @@ namespace Taste.Pages.Customer.Cart
 
         }
 
+        public IActionResult OnPost(string stripeToken)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            detailCart.listCart = _unitOfWork.ShoppingCart.GetAll(c => c.ApplicationUserId == claim.Value).ToList();
+
+        }
+
     }
 }
