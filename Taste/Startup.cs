@@ -56,7 +56,11 @@ namespace Taste
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = "2481959558526884";
+                facebookOptions.AppSecret = "25afe44c4799c1c91dd02bfd4433cc7d";
+            });
             
         }
 
