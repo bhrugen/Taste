@@ -45,25 +45,39 @@
                                 </div>
                             </li>
                         }
+
+                        @if (User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.KitchenRole))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/Admin/Order/ManageOrder">Manage Order</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.FrontDeskRole))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/Admin/Order/OrderList">Order Pickup</a>
+                            </li>
+                        }
+
                         @if (HttpContextAccessor.HttpContext.Session.GetInt32(SD.ShoppingCart) != null)
                         {
                             <li>
                                 <a asp-page="/Customer/Cart/Index" class="nav-link text-white-50">
-                                    @{ 
+                                    @{
                                         var count = HttpContextAccessor.HttpContext.Session.GetInt32(SD.ShoppingCart);
                                     }
                                     <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
                                 </a>
                             </li>
-                                        }
-                                        else
-                                        {
-                        <li>
-                            <a href="#" class="nav-link text-white-50">
-                                <i class="fas fa-shopping-cart"></i> &nbsp; (0)
-                            </a>
-                        </li>
-                                        }
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#" class="nav-link text-white-50">
+                                    <i class="fas fa-shopping-cart"></i> &nbsp; (0)
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
