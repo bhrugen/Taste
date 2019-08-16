@@ -61,6 +61,12 @@ namespace Taste
                 facebookOptions.AppId = "2481959558526884";
                 facebookOptions.AppSecret = "25afe44c4799c1c91dd02bfd4433cc7d";
             });
+
+            services.AddAuthentication().AddMicrosoftAccount(options =>
+            {
+                options.ClientId = "708aabec-01ae-4674-af5b-a2605b0ac2df";
+                options.ClientSecret = "_BPXHMsO-A++jOfPks1cgsKjmey65r9H";
+            });
             
         }
 
