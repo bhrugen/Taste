@@ -23,6 +23,7 @@ namespace Taste.Pages.Customer.Cart
             _unitOfWork = unitOfWork;
         }
 
+        [BindProperty]
         public OrderDetailsCart detailCart { get; set; }
 
         public IActionResult OnGet()
