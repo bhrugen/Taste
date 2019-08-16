@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Stripe;
 using Taste.DataAccess.Data.Repository.IRepository;
 using Taste.Models;
 using Taste.Models.ViewModels;
@@ -94,8 +95,44 @@ namespace Taste.Pages.Customer.Cart
             HttpContext.Session.SetInt32(SD.ShoppingCart, 0);
             _unitOfWork.Save();
 
+            if (stripeToken != null)
+            {
+
+                var options = new ChargeCreateOptions
+                {
+                    //Amount is in cents
+                    Amount = Convert.ToInt32(detailCart.OrderHeader.OrderTotal * 100),
+                    Currency = "usd",
+                    Description = "Order ID : " + detailCart.OrderHeader.Id,
+                    Source = stripeToken
+                };
+                var service = new ChargeService();
+                Charge charge = service.Create(options);
+
+                detailCart.OrderHeader.TransactionId = charge.Id;
+
+                if (charge.Status.ToLower() == "succeeded")
+                {
+                    //email 
+                    detailCart.OrderHeader.PaymentStatus = SD.PaymentStatusApproved;
+                    detailCart.OrderHeader.Status = SD.StatusSubmitted;
+                }
+                else
+                {
+                    detailCart.OrderHeader.PaymentStatus = SD.PaymentStatusRejected;
+                }
+            }
+            else
+            {
+                detailCart.OrderHeader.PaymentStatus = SD.PaymentStatusRejected;
+            }
+            _unitOfWork.Save();
+
+            return RedirectToPage("/Customer/Cart/OrderConfirmation", new { id = detailCart.OrderHeader.Id });
 
         }
+
+        
 
     }
 }
