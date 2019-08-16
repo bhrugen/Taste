@@ -23,13 +23,16 @@ namespace Taste.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public ExternalLoginModel(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
         {
+            _roleManager = roleManager;
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
@@ -51,6 +54,15 @@ namespace Taste.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            [Required]
+            [Display(Name = "Phone Number")]
+            public string PhoneNumber { get; set; }
+            [Required]
+            [Display(Name ="First Name")]
+            public string FirstName { get; set; }
+            [Display(Name = "Last Name")]
+            [Required]
+            public string LastName { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -99,9 +111,12 @@ namespace Taste.Areas.Identity.Pages.Account
                 LoginProvider = info.LoginProvider;
                 if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
                 {
+                    string[] fullName = info.Principal.FindFirstValue(ClaimTypes.Name).Split(' ');
                     Input = new InputModel
                     {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                        FirstName=fullName[0],
+                        LastName=fullName[1]
                     };
                 }
                 return Page();
