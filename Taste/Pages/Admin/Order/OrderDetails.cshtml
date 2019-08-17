@@ -107,7 +107,10 @@
 
                     <button type="submit" disabled class="btn btn-info form-control">@Model.OrderDetailsVM.OrderHeader.Status</button>
                 }
-                @if (User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.FrontDeskRole))
+                @if ((User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.FrontDeskRole)) 
+                    && (Model.OrderDetailsVM.OrderHeader.Status.Equals(SD.StatusSubmitted) 
+                    || Model.OrderDetailsVM.OrderHeader.Status.Equals(SD.StatusReady) 
+                    || Model.OrderDetailsVM.OrderHeader.Status.Equals(SD.StatusInProcess)))
                 {
                     <div class="row pt-1">
                         <div class="col-6">
