@@ -47,7 +47,7 @@
 
                             @if (item.OrderHeader.Status.Equals(SD.StatusSubmitted))
                             {
-                                <button type="submit" class="btn btn-primary form-control mb-3">
+                                <button type="submit" class="btn btn-primary form-control mb-3" asp-page-handler="OrderPrepare" asp-route-OrderId="@item.OrderHeader.Id">
                                     <i class="fas fa-check"></i> &nbsp; Start Cooking
                                 </button>
                             }
@@ -55,17 +55,17 @@
                             {
                                 if (item.OrderHeader.Status.Equals(SD.StatusInProcess))
                                 {
-                                    <button type="submit" class="btn btn-success form-control mb-3">
+                                    <button type="submit" class="btn btn-success form-control mb-3" asp-page-handler="OrderReady" asp-route-OrderId="@item.OrderHeader.Id">
                                         <i class="fas fa-flag-checkered"></i> &nbsp; Order Ready
                                     </button>
                                 }
                             }
 
 
-                            <button type="submit" class="btn btn-warning form-control mb-3">
+                            <button type="submit" class="btn btn-warning form-control mb-3" asp-page-handler="OrderCancel" asp-route-OrderId="@item.OrderHeader.Id">
                                 <i class="fas fa-times"></i> &nbsp; Cancel Order
                             </button>
-                            <button type="submit" class="btn btn-danger form-control mb-3">
+                            <button type="submit" class="btn btn-danger form-control mb-3" asp-page-handler="OrderRefund" asp-route-OrderId="@item.OrderHeader.Id">
                                 <i class="fas fa-times"></i> &nbsp; Refund Order
                             </button>
                         </div>
