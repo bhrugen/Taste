@@ -4,21 +4,46 @@
     ViewData["Title"] = "OrderList";
 }
 
+@{
+    var status = HttpContext.Request.Query["status"];
+    var cancelled = "text-primary";
+    var completed = "text-primary";
+    var inProcess = "text-primary";
+
+    if (status == "cancelled")
+    {
+        cancelled = "active text-white";
+    }
+    else
+    {
+        if (status == "completed")
+        {
+            completed = "active text-white";
+        }
+        else
+        {
+            inProcess = "active text-white";
+        }
+    }
+
+}
+
+
 <div class="border backgroundWhite container">
-    <div class="row">
-        <div class="col-6">
+    <div class="d-flex justify-content-between mb-3">
+        <div class="p-2">
             <h2 class="text-primary">Order's List</h2>
         </div>
-        <div class="col-6 text-right">
+        <div class="p-2">
             <ul class="list-group list-group-horizontal-sm">
-                <a style="text-decoration:none;">
-                    <li class="list-group-item"> Cancelled </li>
+                <a style="text-decoration:none;" asp-page="OrderList" asp-route-status="cancelled">
+                    <li class="list-group-item @cancelled"> Cancelled </li>
                 </a>
-                <a style="text-decoration:none;">
-                    <li class="list-group-item"> Completed </li>
+                <a style="text-decoration:none;" asp-page="OrderList" asp-route-status="completed">
+                    <li class="list-group-item @completed"> Completed </li>
                 </a>
-                <a style="text-decoration:none;">
-                    <li class="list-group-item"> Inprocess </li>
+                <a style="text-decoration:none;" asp-page="OrderList" asp-route-status="inProcess">
+                    <li class="list-group-item @inProcess"> Inprocess </li>
                 </a>
             </ul>
         </div>
