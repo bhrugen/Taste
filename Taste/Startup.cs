@@ -16,6 +16,7 @@ using Taste.DataAccess.Data.Repository.IRepository;
 using Taste.DataAccess.Data.Repository;
 using Taste.Utility;
 using Stripe;
+using Taste.DataAccess.Data.Initializer;
 
 namespace Taste
 {
@@ -41,7 +42,7 @@ namespace Taste
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            services.AddScoped<IDbInitializer, DbInitializer>();
 
             services.AddSession(options =>
             {
@@ -71,7 +72,7 @@ namespace Taste
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -88,7 +89,7 @@ namespace Taste
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSession();
-
+            dbInitializer.Initialize();
             app.UseAuthentication();
             app.UseAuthorization();
 

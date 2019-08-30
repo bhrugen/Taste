@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Taste.DataAccess.Data.Initializer
 {
-    interface IDbInitializer
+    public interface IDbInitializer
     {
         void Initialize();
     }
