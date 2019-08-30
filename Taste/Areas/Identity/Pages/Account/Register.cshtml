@@ -16,7 +16,16 @@
 
                     <div class="card-body px-lg-5 pt-4">
                         <form method="post" autocomplete="off" asp-route-returnUrl="@Model.ReturnUrl">
-                            <h3 class="col-12 text-success text-center py-4"><strong>Sign Up</strong></h3>
+                            <h3 class="col-12 text-success text-center py-4">
+                            @if (User.IsInRole(SD.ManagerRole))
+                            {
+                                <strong>Register an Employee</strong>
+                            }
+                            else
+                            {
+                                <strong>Sign Up</strong>
+                            }
+                            </h3>
                             <hr />
                             <div class="form-row py-2">
                                 <div class="col">
@@ -48,18 +57,23 @@
                                 <input type="password" asp-for="Input.ConfirmPassword" autocomplete="off" placeholder="ConfirmPassword" class="form-control" />
                                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                             </div>
+                            @if (User.IsInRole(SD.ManagerRole))
+                            {
                             <div class="py-2">
                                 <input type="radio" name="rdUserRole" value="@SD.KitchenRole" /> @SD.KitchenRole
                                 <input type="radio" name="rdUserRole" value="@SD.FrontDeskRole" /> @SD.FrontDeskRole
                                 <input type="radio" name="rdUserRole" value="@SD.ManagerRole" /> @SD.ManagerRole
-                                <input type="radio" name="rdUserRole" value="@SD.CustomerRole" /> @SD.CustomerRole
-
                             </div>
+                            }
                             <div class="py-2">
                                 <button type="submit" class="btn btn-success form-control">Register</button>
                             </div>
                             
                         </form>
+
+                        @if (!User.IsInRole(SD.ManagerRole))
+                        {
+
 
                         <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                             <p>
@@ -90,7 +104,7 @@
                                 }
                             </div>
                         </form>
-
+                        }
 
                     </div>
 
