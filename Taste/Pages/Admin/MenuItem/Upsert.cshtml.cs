@@ -57,6 +57,12 @@ namespace Taste.Pages.Admin.MenuItem
 
             if (!ModelState.IsValid)
             {
+                MenuItemObj = new MenuItemVM
+                {
+                    CategoryList = _unitOfWork.Category.GetCategoryListForDropDown(),
+                    FoodTypeList = _unitOfWork.FoodType.GetFoodTypeListForDropDown(),
+                    MenuItem = new Models.MenuItem()
+                };
                 return Page();
             }
             if(MenuItemObj.MenuItem.Id == 0)
